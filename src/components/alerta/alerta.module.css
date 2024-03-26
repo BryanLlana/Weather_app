@@ -1,0 +1,9 @@
+.alert {
+  background-color: crimson;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: .5rem;
+  padding: .5rem 0;
+}
