@@ -23,11 +23,13 @@ const Form = () => {
   const { dispatch } = useWeatherContext()
 
   const onSubmit: SubmitHandler<Inputs> = async data => {
+    dispatch({ type: 'start-loading' })
     const apiKey = '898b5bae231e6087df1ca8e7bb9e2436'
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${data.city},${data.country}&appid=${apiKey}`
     const { data: weatherResult } = await axios(url)
     const result = parse(WeatherSchema, weatherResult)
     dispatch({ type: 'fetch-weather', payload: { result } })
+    dispatch({ type: 'end-loading' })
   } 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

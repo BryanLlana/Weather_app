@@ -1,11 +1,14 @@
 import { Weather } from '../components/form/Form'
 
 export type WeatherState = {
-  result: Weather
+  result: Weather,
+  loading: boolean
 }
 
 export type WeatherAction = 
-  { type: 'fetch-weather', payload: { result: Weather } }
+  { type: 'fetch-weather', payload: { result: Weather } } |
+  { type: 'start-loading' } |
+  { type: 'end-loading' }
 
 export const initialState: WeatherState = {
   result: {
@@ -15,7 +18,8 @@ export const initialState: WeatherState = {
       temp_max: 0,
       temp_min: 0
     }
-  }
+  },
+  loading: false
 }
 
 export const weatherReducer = (state: WeatherState = initialState, action: WeatherAction) => {
@@ -23,6 +27,21 @@ export const weatherReducer = (state: WeatherState = initialState, action: Weath
     return {
       ...state,
       result: action.payload.result
+    }
+  }
+
+  if (action.type === 'start-loading') {
+    return {
+      ...state,
+      result: initialState.result,
+      loading: true
+    }
+  }
+
+  if (action.type === 'end-loading') {
+    return {
+      ...state,
+      loading: false
     }
   }
   return state
