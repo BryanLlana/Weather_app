@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, createContext, useReducer } from "react"
-import { WeatherAction, WeatherState, initialState, weatherReducer } from "../components/reducer/weather.reduce"
+import { WeatherAction, WeatherState, initialState, weatherReducer } from "../reducer/weather.reduce"
 
 type WeatherContextProps = {
   state: WeatherState,
